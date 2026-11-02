@@ -14,8 +14,8 @@ A single pass from a language model often gets multi step math wrong: it drops a
 flowchart LR
     Q([Question]) --> R{"Route by domain"}
     R -- math --> SC["Self Consistency<br/>5 samples at temp 0.7<br/>majority vote"]
-    SC --> RF["Reflection<br/>critique → fix<br/>up to 3 rounds"]
-    R -- coding --> RF2["Reflection<br/>draft → critique → fix"]
+    SC --> RF["Reflection<br/>critique, then fix<br/>up to 3 rounds"]
+    R -- coding --> RF2["Reflection<br/>draft, critique, fix"]
     R -- other --> COT["Chain of Thought<br/>single pass"]
     RF --> A([Final answer])
     RF2 --> A
@@ -27,6 +27,21 @@ flowchart LR
 3. **Verify.** The winning solution goes to a strict reviewer prompt that checks for extraneous roots and broken constraints. If the reviewer says it is correct, the agent stops early. If not, it asks for a fix and checks again, up to 3 times.
 
 A math question uses about 6 to 8 calls, well under the 20 call limit.
+
+## Example
+
+A real question from the course dev set and the agent's saved answer (from `cse476_final_project_answers.json`).
+
+**Question:** Compute $\sqrt{(31)(30)(29)(28)+1}$
+
+**Agent's reasoning (shortened):**
+
+1. Let $n = 30$, so the product is $(n+1)(n)(n-1)(n-2)$.
+2. Pair the terms: $(n^2-1)(n^2-2n) + 1 = n^4 - 2n^3 - n^2 + 2n + 1$.
+3. Match coefficients to find this equals $(n^2-n-1)^2$.
+4. So the square root is $n^2 - n - 1 = 900 - 30 - 1$.
+
+**Answer:** $\boxed{869}$ (correct)
 
 ## Features
 
