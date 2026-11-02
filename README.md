@@ -74,8 +74,8 @@ report.md                     Project report
 You need Python 3.9 or newer and access to an OpenAI compatible endpoint.
 
 ```bash
-git clone https://github.com/manaswichowdary/CSE476.git
-cd CSE476
+git clone https://github.com/manaswichowdary/llm-reasoning-agent.git
+cd llm-reasoning-agent
 pip install -r requirements.txt
 
 export API_BASE=http://your-server:port/v1
