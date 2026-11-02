@@ -2,9 +2,7 @@ __pycache__/
 *.pyc
 .DS_Store
 .env
+
+# Course data files (not redistributed)
+cse476_final_project_dev_data.json
 cse476_final_project_submission/cse_476_final_project_test_data.json
-# Keep the answers and predictions, but ignore the large input data if desired, strict size limits? 
-# Usually test data is fine, but ignoring binary/large files is good. 
-# actually the guidelines say "submit code", usually data is ignored but for this specific assignment 
-# usually instructions say don't upload the data if it's huge, but 7MB is fine.
-# We will keep it simple.

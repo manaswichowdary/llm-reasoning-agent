@@ -3,9 +3,9 @@ import os
 import requests
 import time
 
-# Default configuration from environment variables or provided defaults
-API_KEY  = os.getenv("OPENAI_API_KEY", "cse476")
-API_BASE = os.getenv("API_BASE", "http://10.4.58.53:41701/v1")  
+# Configuration comes from environment variables (see .env.example)
+API_KEY  = os.getenv("OPENAI_API_KEY", "")
+API_BASE = os.getenv("API_BASE", "")
 MODEL    = os.getenv("MODEL_NAME", "bens_model")
 
 def call_model_chat_completions(prompt: str,
@@ -18,6 +18,10 @@ def call_model_chat_completions(prompt: str,
     Calls an OpenAI-style /v1/chat/completions endpoint and returns:
     { 'ok': bool, 'text': str or None, 'raw': dict or None, 'status': int, 'error': str or None, 'headers': dict }
     """
+    if not API_BASE:
+        return {"ok": False, "text": None, "raw": None, "status": -1,
+                "error": "API_BASE is not set. Export API_BASE (see .env.example).", "headers": {}}
+
     url = f"{API_BASE}/chat/completions"
     headers = {
         "Authorization": f"Bearer {API_KEY}",

@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate a placeholder answer file that matches the expected auto-grader format.
+Run the agent on the CSE 476 test set and write answers in the auto grader format.
 
-Replace the placeholder logic inside `build_answers()` with your own agent loop
-before submitting so the ``output`` fields contain your real predictions.
-
-Reads the input questions from cse_476_final_project_test_data.json and writes
-an answers JSON file where each entry contains a string under the "output" key.
+Reads cse476_final_project_submission/cse_476_final_project_test_data.json and writes
+one {"output": ...} entry per question. Progress is saved as it goes, so you can stop
+with Ctrl+C and rerun to resume where you left off.
 """
 
 from __future__ import annotations
@@ -22,7 +20,6 @@ import os
 import signal
 import sys
 
-# Adjusted paths to match user's setup
 INPUT_PATH = Path("cse476_final_project_submission/cse_476_final_project_test_data.json")
 OUTPUT_PATH = Path("cse476_final_project_submission/cse_476_final_project_answers.json")
 
