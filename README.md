@@ -77,6 +77,7 @@ src/
   strategies.py   Chain of Thought, Self Consistency, Reflection, composite strategy
   client.py       API client with retries
   evaluator.py    Grades predictions on the dev set
+tests/            Offline unit tests for parsing, grading, voting and reflection
 generate_submission.py        Runs the full test set (resumable)
 generate_test_predictions.py  Runs a sample of the test set
 generate_outputs.py           Runs the dev set
@@ -96,6 +97,12 @@ pip install -r requirements.txt
 export API_BASE=http://your-server:port/v1
 export OPENAI_API_KEY=your_key_here
 export MODEL_NAME=your_model
+```
+
+Run the tests (no model server needed):
+
+```bash
+python3 -m pytest
 ```
 
 Try it on one question:
